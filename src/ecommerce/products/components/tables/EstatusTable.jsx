@@ -78,7 +78,7 @@ const EstatusTable = ({setDatosSeleccionados, datosSeleccionados}) => {
             }
 
             // Obtener los datos
-            const productsData = await getProduct(IdInstitutoOK);
+            const productsData = await getProduct(IdProdServOK);
             setProductsData(productsData.estatus);
 
             // Cambiar el estado del indicador (loading) a false.

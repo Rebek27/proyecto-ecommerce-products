@@ -58,7 +58,7 @@ const columns = [
 // } from "../../../../share/components/elements/messages/MySwalAlerts";
 
 // Table - FrontEnd.
-const ProductsTable = () => {
+const ProductsTable = ({setDatosSeleccionados, datosSeleccionados}) => {
 
     // controlar el estado del indicador (loading).
     const [loadingTable, setLoadingTable] = useState(true);
@@ -76,9 +76,7 @@ const ProductsTable = () => {
     const [PatchOrdenesShowModal, setPatchOrdenesShowModal] = useState(false);
 
     // // Guardar los datos seleccionados en el estado
-    const [dataRow, setDataRow] = useState();
-
-    const [datosSeleccionados, setDatosSeleccionados] = useState(null);
+    const [dataRow, setDataRow] = useState();;
 
     // Función para manejar el clic en una fila
     const sendDataRow = (rowData) => {

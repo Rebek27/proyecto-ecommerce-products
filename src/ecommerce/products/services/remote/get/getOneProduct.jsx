@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function getProduct(id) {
     return new Promise((resolve, reject) => {
-      axios.get(import.meta.env.VITE_CAT_PROD_SERV_URL+id)
+      axios.get(import.meta.env.VITE_API_PRODUCTOS_URL+"/producto/"+id)
         .then((response) => {
           const data = response.data;
   
