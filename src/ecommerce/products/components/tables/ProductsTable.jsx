@@ -12,7 +12,7 @@ import {getAllProducts} from "../../services/remote/get/getAllProducts";
 import { getProduct } from "../../services/remote/get/getOneProduct";
 
 // // Modals
-// import AddOrdenesModal from "../modals/addModals/AddOrdenesModal.jsx";
+import AddProduct  from "../modales/productos/addProduct";
 // import OrdenesModal from "../modals/patchModals/OrdenesModal.jsx";
 // import OrdenesDetailsModal   from "../modals/detailsModals/OrdenesDetailsModal.jsx";
 
@@ -67,7 +67,7 @@ const ProductsTable = ({setDatosSeleccionados, datosSeleccionados}) => {
     const [productsData, setProductsData] = useState([]);
 
     // // Controlar el estado que muestra u oculta la modal de nueva orden
-    const [AddOrdenShowModal, setAddOrdenShowModal] = useState(false);
+    const [AddProductShowModal, setAddProductShowModal] = useState(false);
 
     // // Controlador para mostra modal detalles
     const [OrdenesDetailsShowModal, setOrdenesDetailsShowModal] = useState(false);
@@ -154,7 +154,7 @@ const ProductsTable = ({setDatosSeleccionados, datosSeleccionados}) => {
                                 <Box>
                                     <Tooltip title="Agregar">
                                         <IconButton
-                                            // onClick={() => setAddOrdenShowModal(true)}
+                                            onClick={() => setAddProductShowModal(true)}   
                                         >
                                             <AddCircleIcon/>
                                         </IconButton>
@@ -193,17 +193,18 @@ const ProductsTable = ({setDatosSeleccionados, datosSeleccionados}) => {
                     )}
                 />
                 {/* M O D A L E S */}
-                {/* <Dialog open={AddOrdenShowModal}>
-                    <AddOrdenesModal
-                        AddOrdenShowModal={AddOrdenShowModal}
-                        setAddOrdenShowModal={setAddOrdenShowModal}
-                        onClose={() => {
-                            setAddOrdenShowModal(false);
-                        }}
-                        fetchData={fetchData}
-                    />
-                </Dialog>
-                <Dialog open={PatchOrdenesShowModal}>
+                <Dialog open={AddProductShowModal}>
+                <AddProduct
+                  AddProductShowModal={AddProductShowModal}
+                  setAddProductShowModal={setAddProductShowModal}
+                  onClose = {async ()=>{
+                    setAddProductShowModal(false);
+                    const newProducts = await getAllProducts();
+                    setProductsData(newProducts);
+                  }
+                }/>
+              </Dialog>
+                {/* <Dialog open={PatchOrdenesShowModal}>
                     <OrdenesModal
                         PatchOrdenesShowModal={PatchOrdenesShowModal}
                         setPatchOrdenesShowModal={setPatchOrdenesShowModal}
