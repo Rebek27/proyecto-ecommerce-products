@@ -197,10 +197,9 @@ const ProductsTable = ({setDatosSeleccionados, datosSeleccionados}) => {
                 <AddProduct
                   AddProductShowModal={AddProductShowModal}
                   setAddProductShowModal={setAddProductShowModal}
-                  onClose = {async ()=>{
+                  onClose = {()=>{
                     setAddProductShowModal(false);
-                    const newProducts = await getAllProducts();
-                    setProductsData(newProducts);
+                    fetchData();
                   }
                 }/>
               </Dialog>

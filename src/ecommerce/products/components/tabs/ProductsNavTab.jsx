@@ -3,7 +3,7 @@ import React, {useState} from "react";
 
 const productsTabs = ["Productos", "Estatus", "Presentaciones", "Negocios", "Informacion Adicional"];
 
-const ProductsNavTab = ({setCurrentRowInOrdersTab, setCurrentNameTabInPrincipalTab}) => {
+const ProductsNavTab = ({setCurrentRowInOrdersTab, setCurrentNameTabInPrincipalTab,isSelected}) => {
 
     const [currenTabIndex, setCurrentTabIndex] = useState(0);
     const handleChange = (e) => {
@@ -40,7 +40,7 @@ const ProductsNavTab = ({setCurrentRowInOrdersTab, setCurrentNameTabInPrincipalT
                 textColor="primary"
             >
                 {productsTabs.map((tab) => {
-                    return <Tab key={tab} label={tab} disabled={setCurrentRowInOrdersTab === null}/>;
+                    return <Tab key={tab} label={tab} disabled={isSelected}/>;
                 })}
             </Tabs>
         </Box>
