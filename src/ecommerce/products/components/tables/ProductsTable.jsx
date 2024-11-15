@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState,useRef} from "react";
 
 //Material UI
 import {MaterialReactTable} from 'material-react-table';
@@ -76,16 +76,24 @@ const ProductsTable = ({setDatosSeleccionados, datosSeleccionados}) => {
     const [PatchOrdenesShowModal, setPatchOrdenesShowModal] = useState(false);
 
     // // Guardar los datos seleccionados en el estado
-    const [dataRow, setDataRow] = useState();;
+    const [dataRow, setDataRow] = useState();
 
     // Función para manejar el clic en una fila
     const sendDataRow = (rowData) => {
-        
-        setDataRow(rowData.original);
+        if(dataRow && dataRow === rowData.original){ 
+            //Si dataRow no esta vacio y su valor es igual al row original, quiere decir que el producto fue seleccionado y deseleccionado
+            setDataRow(null); //se setean los datos a null para evitar caer en un bucle
 
-        const {IdInstitutoOK, IdProdServOK,  IdProdServBK} = rowData.original;
+            setDatosSeleccionados({ IdInstitutoOK:"0", IdProdServOK:"0", IdProdServBK:"0" });//Se envian "0" para validacion en el otro archivo
+        }else{
+            //Si dataRow esta vacio o si no coincide con row.original quiere decir que es una seleccion nueva
+            setDataRow(rowData.original);//se guardan los datos del producto en dataRow
+
+            const { IdInstitutoOK, IdProdServOK, IdProdServBK } = rowData.original; //se desglozan para enviarse
+
+            setDatosSeleccionados({ IdInstitutoOK, IdProdServOK, IdProdServBK });//Se envian al archivo padre
+        }
         
-        setDatosSeleccionados({IdInstitutoOK, IdProdServOK,  IdProdServBK});
     };
 
     async function fetchData() {

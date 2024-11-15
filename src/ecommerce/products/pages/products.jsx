@@ -1,5 +1,5 @@
 import {Box} from "@mui/material";
-import {useState,useEffect,useRef} from "react";
+import {useState,useEffect} from "react";
 import ProductsNavTab from "../components/tabs/ProductsNavTab"
 import ProductTab from "../components/tabs/ProductTab"
 import NegociosTab from "../components/tabs/NegociosTab"
@@ -25,22 +25,14 @@ export default function Orders() {
     //SI ya HAY un producto seleccionado
     const [isSelected,setIsSelected] = useState(false);
     
-    //PARA ver si es el mismo o uno nuevo
-    const prevProd = useRef();
-
-    //Prueba para validar que este un id seleccionado
+    //Prueba para validar que este un id seleccionado  
     useEffect(()=>{
         console.log(datosSeleccionados);
-        if(datosSeleccionados.IdInstitutoOK === "0" && datosSeleccionados.IdProdServOK === "0" && prevProd.current===null){
+        if(datosSeleccionados.IdInstitutoOK === "0" && datosSeleccionados.IdProdServOK === "0" ){
             console.log('Desactivar TABs');
             setIsSelected(true);
-        }else if(prevProd.current && prevProd.current.IdProdServOK === datosSeleccionados.IdProdServOK && prevProd.current.IdProdServBK===datosSeleccionados.IdProdServBK){
-            console.log('Desactivar TABs, doble click en la misma');
-            setIsSelected(true);
-            //setDatosSeleccionados({IdInstitutoOK:"0", IdProdServOK:"0",  IdProdServBK:"0"});
-        }else{
+        } else{
             console.log('ACTIVAR Tabs');
-            prevProd.current = datosSeleccionados;
             setIsSelected(false);
         }
     },[datosSeleccionados]);
