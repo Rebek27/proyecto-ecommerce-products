@@ -67,8 +67,8 @@ export default function Orders() {
             }
             {currentNameTabInPrincipalTab == "NEGOCIOS" &&
                 <NegociosTab
-                    // datosSeleccionados={datosSeleccionados}
-                    // setDatosSeleccionados={setDatosSeleccionados}
+                    datosSeleccionados={datosSeleccionados}
+                    setDatosSeleccionados={setDatosSeleccionados}
                 />
             }
             {currentNameTabInPrincipalTab == "INFORMACION ADICIONAL" &&
